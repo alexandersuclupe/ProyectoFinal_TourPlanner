@@ -1,0 +1,43 @@
+﻿@model proyecto01.Models.Categoria
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Editar">
+    <input asp-for="Id" hidden/>
+    <div>
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <div>
+            <h2>Editar Categoria</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="nombre_categoria">Nombre Categoria</label>
+                    <input asp-for="nombre_categoria">
+                    <span asp-validation-for="nombre_categoria" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="abreviatura">Abreviatura</label>
+                    <input asp-for="abreviatura">
+                    <span asp-validation-for="abreviatura" class="text-danger"></span>
+                </div>
+                <br />
+                <div>
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                    <a asp-controller="Categoria" asp-action="Index" class="btn btn-success">Regresar</a>
+                </div>
+            </div>
+        </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_validationScriptsPartial" />
+    }
+
+}
+
