@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using proyecto01.Datos;
 
@@ -10,9 +11,11 @@ using proyecto01.Datos;
 namespace proyecto01.Migrations
 {
     [DbContext(typeof(AplicacionDbContext))]
-    partial class AplicacionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231104204748_agregarCategoria_establecimiento_bd")]
+    partial class agregarCategoria_establecimiento_bd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
