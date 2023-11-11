@@ -42,7 +42,7 @@ namespace proyecto01.Migrations
                     b.ToTable("Categoria");
                 });
 
-            modelBuilder.Entity("proyecto01.Models.Categoria_establecimiento", b =>
+            modelBuilder.Entity("proyecto01.Models.Producto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,46 +50,40 @@ namespace proyecto01.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("nombre")
+                    b.Property<int>("categoria_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("descripcion_producto")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("imagenUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("nombre_producto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("precio")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categoria_establecimiento");
+                    b.HasIndex("categoria_id");
+
+                    b.ToTable("Producto");
                 });
 
-            modelBuilder.Entity("proyecto01.Models.Usuarios", b =>
+            modelBuilder.Entity("proyecto01.Models.Producto", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("proyecto01.Models.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("categoria_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Apellido")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Contraseña")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nombre_usuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Usuarios");
+                    b.Navigation("Categoria");
                 });
 #pragma warning restore 612, 618
         }

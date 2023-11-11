@@ -11,8 +11,8 @@ using proyecto01.Datos;
 namespace proyecto01.Migrations
 {
     [DbContext(typeof(AplicacionDbContext))]
-    [Migration("20231104201810_agregarUsuarios_bd")]
-    partial class agregarUsuarios_bd
+    [Migration("20231110185924_agregarProductoBD")]
+    partial class agregarProductoBD
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,37 +45,48 @@ namespace proyecto01.Migrations
                     b.ToTable("Categoria");
                 });
 
-            modelBuilder.Entity("proyecto01.Models.Usuarios", b =>
+            modelBuilder.Entity("proyecto01.Models.Producto", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Apellido")
+                    b.Property<int>("categoria_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("descripcion_producto")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Contraseña")
+                    b.Property<string>("imagenUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("nombre_producto")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("precio")
+                        .HasColumnType("float");
 
-                    b.Property<string>("Nombre_usuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Id");
 
-                    b.HasKey("ID");
+                    b.HasIndex("categoria_id");
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Producto");
+                });
+
+            modelBuilder.Entity("proyecto01.Models.Producto", b =>
+                {
+                    b.HasOne("proyecto01.Models.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("categoria_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
                 });
 #pragma warning restore 612, 618
         }

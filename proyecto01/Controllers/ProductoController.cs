@@ -1,20 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using proyecto01.Datos;
 using proyecto01.Models;
 
 namespace proyecto01.Controllers
 {
-    public class Categoria_establecimientoController : Controller
+    public class ProductoController : Controller
     {
         private readonly AplicacionDbContext _db;
 
-        public Categoria_establecimientoController(AplicacionDbContext db)
+        public ProductoController(AplicacionDbContext db)
         {
             _db = db;
         }
         public IActionResult Index()
         {
-            IEnumerable<Categoria_establecimiento> lista = _db.Categoria_establecimiento;
+            IEnumerable<Producto> lista = _db.Producto.Include(c => c.Categoria);
             return View(lista);
         }
         //METODO GET
@@ -26,15 +27,15 @@ namespace proyecto01.Controllers
         //METODO POST
         //PARA QUE GUARDE LOS DATOS EN LA BD
         [HttpPost]
-        public IActionResult Crear(Categoria_establecimiento categoria_establecimiento)
+        public IActionResult Crear(Producto producto)
         {
             if (ModelState.IsValid)
             {
-                _db.Categoria_establecimiento.Add(categoria_establecimiento);
+                _db.Producto.Add(producto);
                 _db.SaveChanges();
                 return RedirectToAction(nameof(Index)); //redireccionar a la vista principal
             }
-            return View(categoria_establecimiento); //para retornar la vista con los mismos datos del modelo
+            return View(producto); //para retornar la vista con los mismos datos del modelo
         }
         //Get Editar 
         public IActionResult Editar(int? Id)
@@ -43,7 +44,7 @@ namespace proyecto01.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.Categoria_establecimiento.Find(Id);
+            var obj = _db.Producto.Find(Id);
             if (obj == null)
             {
                 return NotFound();
@@ -52,15 +53,15 @@ namespace proyecto01.Controllers
         }
         //metodo post editar
         [HttpPost]
-        public IActionResult Editar(Categoria_establecimiento categoria_establecimiento)
+        public IActionResult Editar(Producto producto)
         {
             if (ModelState.IsValid)
             {
-                _db.Categoria_establecimiento.Update(categoria_establecimiento);
+                _db.Producto.Update(producto);
                 _db.SaveChanges();
                 return RedirectToAction(nameof(Index)); //redireccionar a la vista principal
             }
-            return View(categoria_establecimiento); //para retornar la vista con los mismos datos del modelo
+            return View(producto); //para retornar la vista con los mismos datos del modelo
         }
 
         //Get Elminar
@@ -70,7 +71,7 @@ namespace proyecto01.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.Categoria_establecimiento.Find(Id);
+            var obj = _db.Producto.Find(Id);
             if (obj == null)
             {
                 return NotFound();
@@ -79,15 +80,35 @@ namespace proyecto01.Controllers
         }
         //metodo post elminar
         [HttpPost]
-        public IActionResult Eliminar(Categoria_establecimiento categoria_establecimiento)
+        public IActionResult Eliminar(Producto producto)
         {
-            if (categoria_establecimiento == null)
+            if (producto == null)
             {
                 return NotFound();
             }
-            _db.Categoria_establecimiento.Remove(categoria_establecimiento);
+            _db.Producto.Remove(producto);
             _db.SaveChanges();
             return RedirectToAction(nameof(Index)); //redireccionar a la vista principal
+        }
+        //get
+        public IActionResult Upsert(int? Id)
+        {
+            Producto producto = new Producto();
+            //validar el id que recibe
+            if (Id == null)
+            {
+                //crear un nuevo producto
+                return View(producto);
+            }
+            else
+            {
+                producto = _db.Producto.Find(Id);
+                if (producto == null)
+                {
+                    return NotFound();
+                }
+                return View(producto);
+            }
         }
     }
 }

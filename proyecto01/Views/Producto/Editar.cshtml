@@ -1,0 +1,58 @@
+﻿@model proyecto01.Models.Producto
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Editar">
+    <input asp-for="Id" hidden/>
+    <div>
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <div>
+            <h2>Editar Categoria</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="nombre_producto">Producto</label>
+                    <input asp-for="nombre_producto">
+                    <span asp-validation-for="nombre_producto" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="descripcion_producto">Descripcion</label>
+                    <input asp-for="descripcion_producto">
+                    <span asp-validation-for="descripcion_producto" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="precio">Precio</label>
+                    <input asp-for="precio">
+                    <span asp-validation-for="precio" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="imagenUrl">Imagen URL</label>
+                    <input asp-for="imagenUrl">
+                    <span asp-validation-for="imagenUrl" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="categoria_id">Categoria ID</label>
+                    <input asp-for="categoria_id">
+                    <span asp-validation-for="categoria_id" class="text-danger"></span>
+                </div>
+                <br />
+                <div>
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                    <a asp-controller="Producto" asp-action="Index" class="btn btn-success">Regresar</a>
+                </div>
+            </div>
+        </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_validationScriptsPartial" />
+    }
+
+}
+
