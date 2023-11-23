@@ -16,7 +16,7 @@ namespace proyecto01.Datos
         public DbSet<Categoria_establecimiento> Categoria_establecimiento { get; set; }
         public DbSet<Ubigeo> Ubigeo { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
-        public DbSet<Lugar> Lugar { get; set; }
+      
 
 
     }
