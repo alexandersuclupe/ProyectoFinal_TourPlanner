@@ -18,8 +18,8 @@ namespace proyecto01.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<Lugar> lista = _db.Lugar.Include(c => c.Categoria_lugar)
-                                                .Include(u => u.Ubigeo);
+            IEnumerable<Lugar> lista = _db.Lugar.Include(c => c.Categoria_lugar);
+                                                
             return View(lista);
         }
         //METODO GET
