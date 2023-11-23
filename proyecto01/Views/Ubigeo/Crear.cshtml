@@ -1,0 +1,51 @@
+﻿@model proyecto01.Models.Ubigeo
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Crear">
+    <div>
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <div>
+            <h2>Nuevo Ubigeo</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="ubigeo">Ubigeo</label>
+                    <input asp-for="ubigeo">
+                    <span asp-validation-for="ubigeo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="departamento">Departamento</label>
+                    <input asp-for="departamento">
+                    <span asp-validation-for="departamento" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="provincia">Provincia</label>
+                    <input asp-for="provincia">
+                    <span asp-validation-for="provincia" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="distrito">Distrito</label>
+                    <input asp-for="distrito">
+                    <span asp-validation-for="distrito" class="text-danger"></span>
+                </div>
+                <br />
+                <div>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <a asp-controller="Ubigeo" asp-action="Index" class="btn btn-success">Regresar</a>
+                </div>
+            </div>
+        </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_validationScriptsPartial" />
+    }
+
+}

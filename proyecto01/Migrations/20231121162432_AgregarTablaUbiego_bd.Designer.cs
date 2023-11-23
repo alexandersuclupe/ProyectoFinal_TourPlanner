@@ -11,8 +11,8 @@ using proyecto01.Datos;
 namespace proyecto01.Migrations
 {
     [DbContext(typeof(AplicacionDbContext))]
-    [Migration("20231110185924_agregarProductoBD")]
-    partial class agregarProductoBD
+    [Migration("20231121162432_AgregarTablaUbiego_bd")]
+    partial class AgregarTablaUbiego_bd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,6 +43,40 @@ namespace proyecto01.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categoria");
+                });
+
+            modelBuilder.Entity("proyecto01.Models.Categoria_establecimiento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categoria_establecimiento");
+                });
+
+            modelBuilder.Entity("proyecto01.Models.Categoria_lugar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categoria_lugar");
                 });
 
             modelBuilder.Entity("proyecto01.Models.Producto", b =>
@@ -76,6 +110,35 @@ namespace proyecto01.Migrations
                     b.HasIndex("categoria_id");
 
                     b.ToTable("Producto");
+                });
+
+            modelBuilder.Entity("proyecto01.Models.Ubigeo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("departamento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("distrito")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("provincia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ubigeo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ubigeo");
                 });
 
             modelBuilder.Entity("proyecto01.Models.Producto", b =>

@@ -1,0 +1,53 @@
+﻿@model proyecto01.Models.Lugar
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Editar">
+    <input asp-for="Id" hidden/>
+    <div>
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <div>
+            <h2>Editar Lugar</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="nombre">Nombre</label>
+                    <input asp-for="nombre">
+                    <span asp-validation-for="nombre" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="descripcion">Descripcion</label>
+                    <input asp-for="descripcion">
+                    <span asp-validation-for="descripcion" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="ubigeo_id">Ubigeo ID</label>
+                    <input asp-for="ubigeo_id">
+                    <span asp-validation-for="ubigeo_id" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="categoria_lugar_id">Categoria Lugar ID</label>
+                    <input asp-for="categoria_lugar_id">
+                    <span asp-validation-for="categoria_lugar_id" class="text-danger"></span>
+                </div>
+                <br />
+                <div>
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                    <a asp-controller="Lugar" asp-action="Index" class="btn btn-success">Regresar</a>
+                </div>
+            </div>
+        </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_validationScriptsPartial" />
+    }
+
+}
+

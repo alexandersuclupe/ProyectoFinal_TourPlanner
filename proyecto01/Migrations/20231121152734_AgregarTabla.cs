@@ -5,7 +5,7 @@
 namespace proyecto01.Migrations
 {
     /// <inheritdoc />
-    public partial class agregarProductoBD : Migration
+    public partial class AgregarTabla : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,6 +22,32 @@ namespace proyecto01.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categoria", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categoria_establecimiento",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categoria_establecimiento", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categoria_lugar",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categoria_lugar", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,6 +82,12 @@ namespace proyecto01.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Categoria_establecimiento");
+
+            migrationBuilder.DropTable(
+                name: "Categoria_lugar");
+
             migrationBuilder.DropTable(
                 name: "Producto");
 

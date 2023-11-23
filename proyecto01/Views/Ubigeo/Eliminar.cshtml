@@ -1,0 +1,49 @@
+﻿@model proyecto01.Models.Ubigeo
+@{
+    ViewData["Title"] = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Eliminar">
+    <input asp-for="Id" hidden/>
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <div class="form-row">
+            <h2 class="text-danger pl-3">¿Esta seguro de Eliminar Ubigeo?</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="ubigeo">Ubigeo</label>
+                    <input asp-for="ubigeo" disabled>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="departamento">Departamento</label>
+                    <input asp-for="departamento" disabled>
+                </div>
+                 <div class="col-md-6">
+                    <label asp-for="provincia">Provincia</label>
+                    <input asp-for="provincia" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="distrito">Distrito</label>
+                    <input asp-for="distrito" disabled>
+                </div>
+                <br />
+                <div>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a asp-controller="Ubigeo" asp-action="Index" class="btn btn-success">Regresar</a>
+                </div>
+            </div>
+        </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_validationScriptsPartial"/>
+    }
+
+}
+

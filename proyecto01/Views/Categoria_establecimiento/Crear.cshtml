@@ -1,0 +1,35 @@
+﻿@model proyecto01.Models.Categoria_establecimiento
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Crear">
+     <div>
+         <div asp-validation-summary="ModelOnly" class="text-danger">
+
+         </div>
+        <div>
+            <h2>Nueva Categoria Establecimiento</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="nombre">Nombre</label>
+                    <input asp-for="nombre">
+                    <span asp-validation-for="nombre" class="text-danger"></span>
+                </div>
+             </div>
+            <div class="row">
+                 <br />
+                 <div>
+                     <button type="submit" class="btn btn-primary">Crear</button>
+                     <a asp-controller="Categoria_establecimiento" asp-action="Index" class="btn btn-success">Regresar</a>
+                </div>
+            </div>
+    </div>
+</form>
+@section Scripts{
+    @{<partial name="_validationScriptsPartial"/>}
+
+}

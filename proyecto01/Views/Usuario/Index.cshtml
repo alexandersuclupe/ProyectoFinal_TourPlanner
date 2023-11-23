@@ -1,0 +1,65 @@
+﻿@model IEnumerable<proyecto01.Models.Usuario>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div>
+        <div>
+            <h2>Lista de Usuarios</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Usuario" asp-action="Crear" class="btn btn-success">Nuevo Usuario</a>
+        </div>
+    </div>
+    <br/>
+    @if(Model.Count()>0)
+    {
+        <table class="table table-bordered table-striped" style="width=100%">
+            <thead>
+                <tr>
+                    <th class="text-center">Nombres</th>
+                    <th class="text-center">Apellidos</th>
+                    <th class="text-center">Usuario</th>
+                    <th class="text-center">Contraseña</th>
+                    <th class="text-center">Correo Electrónico</th>
+                    <th class="text-center">Fecha Nacimiento</th>
+                    <th class="text-center">Fecha Registro</th>
+                    <th class="text-center">Estado</th>
+                    <th class="text-center">Editar/Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <th>@item.nombres</th>
+                        <th>@item.apellidos</th>
+                        <th>@item.usuario</th>
+                        <th>@item.contraseña</th>
+                        <th>@item.correo_electronico</th>
+                        <th>@item.fecha_nacimiento</th>
+                        <th>@item.fecha_registro</th>
+                        <th>@item.estado</th>
+                        <th class="text-center">
+                           <div class="w-75 btn-group" role="group">
+                               <a asp-controller="Usuario" asp-action="Editar" asp-route-Id="@item.Id" class="btn btn-primary mx-2">
+                                   Editar
+                               </a>
+                                <a asp-controller="Usuario" asp-action="Eliminar" asp-route-Id="@item.Id" class="btn btn-danger mx-2">
+                                    Eliminar
+                                </a>
+                           </div> 
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <pNo>No existe ningun registro</pNo>
+    }
+</div>
+

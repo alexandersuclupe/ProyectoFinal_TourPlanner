@@ -1,4 +1,4 @@
-﻿@model proyecto01.Models.Producto
+﻿@model proyecto01.Models.Lugar
 @{
     ViewData["Title"] = "Eliminar";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,36 +10,32 @@
         <div asp-validation-summary="ModelOnly" class="text-danger">
         </div>
         <div class="form-row">
-            <h2 class="text-danger pl-3">¿Esta seguro de Eliminar Producto?</h2>
+            <h2 class="text-danger pl-3">¿Esta seguro de Eliminar Lugar?</h2>
         </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <label asp-for="nombre_producto">Producto</label>
-                    <input asp-for="nombre_producto" disabled>
+                    <label asp-for="nombre">Nombre</label>
+                    <input asp-for="nombre" disabled>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label asp-for="descripcion_producto">Descripcion</label>
-                    <input asp-for="descripcion_producto" disabled>
+                    <label asp-for="descripcion">Descripcion</label>
+                    <input asp-for="descripcion" disabled>
                 </div>
                 <div class="col-md-6">
-                        <label asp-for="precio">Precio</label>
-                        <input asp-for="precio" disabled>
+                    <label asp-for="ubigeo_id">Ubigeo ID</label>
+                    <input asp-for="ubigeo_id" disabled>
                 </div>
                 <div class="col-md-6">
-                        <label asp-for="imagenUrl">Imagen URL</label>
-                        <input asp-for="imagenUrl" disabled>
-                </div>
-                <div class="col-md-6">
-                        <label asp-for="categoria_id">Categoria ID</label>
-                        <input asp-for="categoria_id" disabled>
+                    <label asp-for="categoria_lugar_id">Categoria Lugar ID</label>
+                    <input asp-for="categoria_lugar_id" disabled>
                 </div>
                 <br />
                 <div>
                     <button type="submit" class="btn btn-danger">Eliminar</button>
-                    <a asp-controller="Producto" asp-action="Index" class="btn btn-success">Regresar</a>
+                    <a asp-controller="Lugar" asp-action="Index" class="btn btn-success">Regresar</a>
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@
             <h2>Lista de Lugares</h2>
         </div>
         <div class="col-6">
-            <a asp-controller="Lugares" asp-action="Upsert" class="btn btn-success">Nuevo Producto</a>
+            <a asp-controller="Lugar" asp-action="Upsert" class="btn btn-success">Nuevo Lugar</a>
         </div>
     </div>
     <br/>
@@ -19,11 +19,10 @@
         <table class="table table-bordered table-striped" style="width=100%">
             <thead>
                 <tr>
-                    <th class="text-center">Nombre Producto</th>
-                    <th class="text-center">Descripcion Producto</th>
-                    <th class="text-center">Precio</th>
-                    <th class="text-center">Imagen</th>
-                    <th class="text-center">Categoria ID</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Descripcion</th>
+                    <th class="text-center">Ubigeo ID</th>
+                    <th class="text-center">Categoria Lugar ID</th>
                     <th class="text-center">Editar/Eliminar</th>
                 </tr>
             </thead>
@@ -31,17 +30,16 @@
                 @foreach(var item in Model)
                 {
                     <tr>
-                        <th>@item.nombre_producto</th>
-                        <th>@item.descripcion_producto</th>
-                        <th>@item.precio</th>
-                        <th>@item.imagenUrl</th>
-                        <th>@item.categoria_id</th>
+                        <th>@item.nombre</th>
+                        <th>@item.descripcion</th>
+                        <th>@item.ubigeo_id</th>
+                        <th>@item.categoria_lugar_id</th>
                         <th class="text-center">
                            <div class="w-75 btn-group" role="group">
-                               <a asp-controller="Producto" asp-action="Upsert" asp-route-Id="@item.Id" class="btn btn-primary mx-2">
+                               <a asp-controller="Lugar" asp-action="Upsert" asp-route-Id="@item.Id" class="btn btn-primary mx-2">
                                    Editar
                                </a>
-                                <a asp-controller="Producto" asp-action="Eliminar" asp-route-Id="@item.Id" class="btn btn-danger mx-2">
+                                <a asp-controller="Lugar" asp-action="Eliminar" asp-route-Id="@item.Id" class="btn btn-danger mx-2">
                                     Eliminar
                                 </a>
                            </div> 
